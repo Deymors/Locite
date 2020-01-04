@@ -1,0 +1,164 @@
+<html>
+
+<head>
+    <title>Locite</title>
+    <link rel="stylesheet" href="static/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="static/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="static/js/renderers/CSS3DRenderer.js"></script>
+    <script src="static/js/controls/TrackballControls.js"></script>
+    <script src="static/js/libs/tween.min.js"></script>
+    <style>
+        body{
+                margin: 0;
+            }
+        h1
+        {
+          color: white;
+          font-size: 40pt;
+          text-align: center;
+        }
+        .search
+        {
+          margin-top: 7px;
+          width: 14.35%;
+        }
+        button
+        {
+          text-align: center;
+          font-size: 17pt;
+          background-color: Black;
+          color: white;
+          outline: none;
+        }
+        #html-block
+        {
+            position: absolute;
+            top:10%;
+            display: block;
+        }
+        #html-block1
+        {
+            position: absolute;
+            top:5%;
+            display: block;
+        }
+        #boxer{
+  background:rgba(0,0,0,0.4);
+  width: fit-content;
+  padding: 10 10 10 10;
+            border-radius: 7%
+        }
+        #chromosome{
+                width: inherit;
+                height: 300px;
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-image: url(static/chromosomes/12q.png);
+        }
+        #result{
+                padding: 10 10 10 10;
+    width: 700px;
+        }
+        body{
+        }
+        .h6
+        {
+            color:black;
+            text-align: center;
+        }
+        #response{
+            border-radius: 5%;
+        }
+        #result>.row{
+            background: rgb(255,255,255,0.7);
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 5%;
+        }
+        #titleText{
+            color:black;
+            text-align: center;
+        }
+        #myCanvas{
+            position:fixed;
+            background-image: url("static/background.png");
+        }
+    </style>
+
+</head>
+
+<body class="w-100 ">
+    <canvas id="myCanvas" class="aqua-gradient color-block mb-3 mx-auto rounded z-depth-0"></canvas>
+<div id="html-block1" class=" w-100 justify-content-center">
+    <div id="result" class="container">
+        <div class="row justify-content-center">
+            <div id="title" class="display-4" class="col-md-auto"><p id="titleText"></p></div>
+            <div id="backbutton">
+                <form method="post" action="/" id="BackButtonForm">
+
+                        <input type="submit"  class="btn btn-outline-dark btn-lg" name="BackButtonForm" value="Search other genes">
+
+                </form>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div id="response" class="col-md-auto">
+                <p id="responseText" class="h6"></p>
+            </div>
+        </div>
+        <div class="row justify-content-center" id="chrs" style="width:100%;">
+            <div id="chromosome" class="col-md-auto"></div>
+        </div>
+        <div id="allText">'{{ allText }}'</div>
+    </div>
+</div>
+
+    <script src="static/code/background.js"></script>
+    <script type="text/javascript">
+        var randomCache = Math.floor(Math.random() * (100000));
+        var title="";
+        var description="";
+        var loci="";
+        var chrsnum;
+        var arm;
+        var allText = $( "#allText" ).text();
+        if(allText.includes("Erroneous search entry"))
+        {
+            alert("Erroneous search entry, please try again!");
+             document.getElementById('BackButtonForm').submit();
+        }
+                        allText = allText.replace(/\s+/g,' ').trim();
+                        var texto = allText.split("$");
+                        title += texto[0];
+                        description += texto[1];
+                        loci += texto[2];
+                        if(loci.includes("p"))
+                        {
+                            arm = "p";
+                            var t =loci.split("p")[0]
+                            chrsnum = t.split(" ")[2];
+                        }
+                        if(loci.includes("q"))
+                        {
+                            arm = "q";
+                            var t =loci.split("q")[0]
+                            chrsnum = t.split(" ")[2];
+                        }
+            var link ="static/chromosomes/"+ chrsnum.toLowerCase()+arm+".png";
+            document.getElementById("chromosome").style.backgroundImage = "url('" + link + "')";
+            // alert(link);
+            document.getElementById("responseText").innerHTML = description;
+            document.getElementById("titleText").innerHTML = title;
+            document.getElementById("allText").remove();
+    </script>
+    <script src="static/three.js"></script>
+    <script src="static/GLTFLoader.js"></script>
+    <script src="static/js/WebGL.js"></script>
+	<script src="js/libs/stats.min.js"></script>
+	<script src="js/controls/OrbitControls.js"></script>
+    <script src="static/code/background.js?ver=1"></script>
+</body>
+</html>

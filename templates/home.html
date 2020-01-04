@@ -1,0 +1,100 @@
+<html>
+
+<head>
+    <title>Locite - Simplified Gene Finder</title>
+    <link rel="stylesheet" href="static/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="static/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+        h1 {
+            color: white;
+            font-size: 60pt;
+            text-align: center;
+        }
+        h2 {
+            color: white;
+            text-align: center;
+        }
+        .search {
+            margin-top: 7px;
+            width: 14.35%;
+        }
+        #howto {
+            color: white;
+        }
+        button {
+            text-align: center;
+            font-size: 17pt;
+            background-color: Black;
+            color: white;
+            outline: none;
+        }
+        #html-block {
+            position: absolute;
+            top: 20%;
+            display: block;
+        }
+        #boxer {
+            background: rgba(0, 0, 0, 0.4);
+            width: fit-content;
+            padding: 10 10 10 10;
+            border-radius: 7%
+        }
+        body {
+            background-image: url("static/background.png");
+        }
+    </style>
+</head>
+
+<body class="w-100">
+    <canvas id="myCanvas" class="aqua-gradient color-block mb-3 mx-auto rounded z-depth-0"></canvas>
+
+    <script src="static/three.js"></script>
+    <script src="static/GLTFLoader.js"></script>
+    <script src="static/js/WebGL.js"></script>
+	<script src="js/libs/stats.min.js"></script>
+	<script src="js/controls/OrbitControls.js"></script>
+    <script src="static/code/background.js"></script>
+    <div id="html-block" class=" w-100">
+        <div id="boxer" class="container">
+            <div class=" justify-content-md-center">
+                <div class="col-md-auto">
+                    <h1> Locite </h1>
+                    <h2> Simplified Gene Finder </h2>
+                </div>
+                <div id="howto" class="col-md-auto">
+                    <h6 style="text-align:center">
+                    Welcome to Locite! Easily find and visualize<br/>
+                    genes with our powerful search tool. Locite<br/>
+                    allows you to search for a specific gene, or<br/>
+                    find a gene linked to a specific genetic disease<br/>
+                    or physical trait.<br/><br/>
+                    How to use:<br/>
+                    If looking for a specific gene, type the name of<br/>
+                    the gene (ex: HBB). If looking for a gene linked<br/>
+                    to a genetic disease or physical trait, type in the<br/>
+                    genetic disease (ex: Huntington) or physical trait<br/>
+                    (ex: Eye Color). The search tool is case sensitive,<br/>
+                    make no spelling mistakes.
+                    </h6>
+                </div>
+                <div class="w-100"></div>
+                <div class="col-md-auto ">
+                    <div class="input-group input-group-lg input">
+                        <form method="POST" onsubmit="accelerate();">
+                            <input name="text" style="height: 40px;">
+                            <input id="goSearch" type="submit" class="btn  btn-lg btn-light" name="SearchGene" value="SearchGene">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
